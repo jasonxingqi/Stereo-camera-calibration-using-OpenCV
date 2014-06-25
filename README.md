@@ -1,9 +1,4 @@
-Stereo-camera-calibration-using-OpenCV
-======================================
-
-Thuy Tuong Nguyen, PhD
-- University of California, Davis
-- June 2014
+Thuy Tuong Nguyen, PhD. University of California, Davis. June 2014
  
 About this code:
 - For research purpose only. 
