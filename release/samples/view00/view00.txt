@@ -1,0 +1,2 @@
+[your directory]\view00\left.bmp
+[your directory]\view00\right.bmp

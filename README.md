@@ -10,3 +10,5 @@ About this code:
 - Able to calibration one view (2 images) and multiple views.
 - Calibration results are saved to 2 text files (one for left, one for right image) with intrinsic, 
   distortion, rotation, projection, and perspective transformation (Q) matrices.
+
+See \release\samples for how to load stereo images in \release\Calibration.exe
