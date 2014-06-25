@@ -263,9 +263,6 @@ void CMy140405cameracalibrationcDlg::OnBnClickedButtonCalibrateStereoImg()
 
 
 	// ---- release all matrices	
-	//vector<vector<Point3f>>().swap(objectPoints); 
-	//vector<vector<Point2f>>().swap(imagePoints1);
-	//vector<vector<Point2f>>().swap(imagePoints2);
 	intrinsic1.release();		distortion1.release();
 	intrinsic2.release();		distortion2.release();
 	R.release();
@@ -286,7 +283,8 @@ void CMy140405cameracalibrationcDlg::OnBnClickedButtonCalibrateStereoImg()
 
 
 void CMy140405cameracalibrationcDlg::CreateChessboardObjectPoints(Size boardSize, vector<vector<Point3f>>& objectPoints, int nThView)  {
-	int squareSize = 1; // inch	
+	//int squareSize = 1; // inch	
+	int squareSize = 0.85;
 	for (int i = 0; i < boardSize.height; i++)
 		for (int j = 0; j < boardSize.width; j++)
 			objectPoints[nThView].push_back(Point3f(float(j*squareSize), float(i*squareSize), 0));
@@ -294,8 +292,7 @@ void CMy140405cameracalibrationcDlg::CreateChessboardObjectPoints(Size boardSize
 
 
 void CMy140405cameracalibrationcDlg::CreateAsymmetricCirclesObjectPoints(Size boardSize, vector<vector<Point3f>>& objectPoints, int nThView)  {
-	//int squareSize = 1; // inch	
-	int squareSize = 0.85;
+	int squareSize = 1; // inch		
 	for (int i = 0; i < boardSize.height; i++)
 		for (int j = 0; j < boardSize.width; j++)
 			objectPoints[nThView].push_back(Point3f(float((2*j + i%2)*squareSize), float(i*squareSize), 0));
@@ -336,11 +333,9 @@ bool CMy140405cameracalibrationcDlg::DetectSymmetricCircles(Mat img, Size boardS
 	params.minDistBetweenBlobs = 7;
 
 	Ptr<FeatureDetector> blobDetector = new SimpleBlobDetector(params);
-
 	bool isFound = findCirclesGrid(imgGray, boardSize, circles, CALIB_CB_SYMMETRIC_GRID, blobDetector);
 
 	imgGray.release();
-
 
 	// display corner detection result
 	if (isDisplayResult && isFound) {
@@ -363,12 +358,10 @@ bool CMy140405cameracalibrationcDlg::DetectAsymmetricCircles(Mat img, Size board
 	params.minDistBetweenBlobs = 7;
 
 	Ptr<FeatureDetector> blobDetector = new SimpleBlobDetector(params);
-
 	bool isFound = findCirclesGrid(imgGray, boardSize, circles, CALIB_CB_ASYMMETRIC_GRID, blobDetector); // need opencv_features2d248.lib
 	//bool isFound = findCirclesGrid(imgGray, boardSize, circles, CALIB_CB_CLUSTERING, blobDetector);
 
-	imgGray.release();
-	
+	imgGray.release();	
 
 	// display corner detection result
 	if (isDisplayResult && isFound) {
