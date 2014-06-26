@@ -283,8 +283,7 @@ void CMy140405cameracalibrationcDlg::OnBnClickedButtonCalibrateStereoImg()
 
 
 void CMy140405cameracalibrationcDlg::CreateChessboardObjectPoints(Size boardSize, vector<vector<Point3f>>& objectPoints, int nThView)  {
-	//int squareSize = 1; // inch	
-	int squareSize = 0.85;
+	int squareSize = 1; // inch	
 	for (int i = 0; i < boardSize.height; i++)
 		for (int j = 0; j < boardSize.width; j++)
 			objectPoints[nThView].push_back(Point3f(float(j*squareSize), float(i*squareSize), 0));
